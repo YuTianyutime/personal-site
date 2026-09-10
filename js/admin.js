@@ -351,6 +351,22 @@
     return "";
   }
 
+  async function putLatestSiteData(nextData, message) {
+    let lastError = null;
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const latest = await state.store.getJson(DATA_PATH);
+      state.siteSha = latest?.sha || null;
+      try {
+        return await state.store.putJson(DATA_PATH, nextData, message, state.siteSha);
+      } catch (error) {
+        lastError = error;
+        if (![409, 422].includes(error.status) || attempt === 1) throw error;
+        await new Promise((resolve) => window.setTimeout(resolve, 350));
+      }
+    }
+    throw lastError;
+  }
+
   async function saveEditor() {
     if (!state.store || state.busy) return;
     const nextData = readEditor();
@@ -366,8 +382,7 @@
 
     try {
       nextData.updatedAt = new Date().toISOString();
-      const result = await state.store.putJson(
-        DATA_PATH,
+      const result = await putLatestSiteData(
         nextData,
         `更新个人主页内容 · ${nextData.name}`
       );
