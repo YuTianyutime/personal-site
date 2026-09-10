@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171a1e">
+  <meta name="robots" content="noindex,nofollow">
+  <title>管理个人主页</title>
+  <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/admin.css">
+  <script src="./js/github-store.js" defer></script>
+  <script src="./js/admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <header class="admin-topbar">
+    <div class="admin-topbar-inner">
+      <a class="admin-brand" href="./index.html">
+        <span class="brand-mark" id="adminBrandMark">余</span>
+        <span>
+          <strong>个人主页管理</strong>
+          <small id="adminRepoLabel">尚未连接</small>
+        </span>
+      </a>
+      <div class="admin-top-actions">
+        <a class="admin-link-button" href="./index.html" target="_blank" rel="noopener">预览主页</a>
+        <button class="admin-icon-button" id="topDisconnectButton" type="button" aria-label="断开连接" hidden>退出</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <section class="admin-welcome">
+      <p class="admin-kicker">MOBILE EDITOR</p>
+      <h1>在手机上，轻松更新你的网页。</h1>
+      <p>编辑文字、上传照片、替换头像和联系方式。保存后，公开主页会自动更新。</p>
+    </section>
+
+    <section class="connection-card" id="connectionPanel">
+      <div class="connection-copy">
+        <span class="step-badge">第 1 步</span>
+        <h2>连接你的 GitHub 网站仓库</h2>
+        <p>连接只需要做一次。密码令牌仅保存在你的手机浏览器中，不会上传到本网站。</p>
+        <details class="help-details">
+          <summary>如何获得令牌？</summary>
+          <ol>
+            <li>登录 GitHub，打开 <strong>Settings → Developer settings → Personal access tokens → Fine-grained tokens</strong>。</li>
+            <li>创建一个只允许访问个人网站仓库的令牌。</li>
+            <li>仓库权限只开启 <strong>Contents: Read and write</strong>。</li>
+            <li>复制令牌并粘贴到下方。令牌通常以 <code>github_pat_</code> 开头。</li>
+          </ol>
+        </details>
+      </div>
+
+      <form class="connection-form" id="connectionForm">
+        <label class="field">
+          <span>GitHub 用户名</span>
+          <input id="ownerInput" name="owner" autocomplete="username" placeholder="例如 yutianyu" required>
+        </label>
+        <label class="field">
+          <span>仓库名称</span>
+          <input id="repoInput" name="repo" autocomplete="off" placeholder="例如 personal-site" required>
+        </label>
+        <div class="field-row">
+          <label class="field">
+            <span>分支</span>
+            <input id="branchInput" name="branch" value="main" autocomplete="off" required>
+          </label>
+          <label class="field token-field">
+            <span>访问令牌</span>
+            <input id="tokenInput" name="token" type="password" autocomplete="off" placeholder="github_pat_..." required>
+          </label>
+        </div>
+        <label class="check-field">
+          <input id="rememberTokenInput" type="checkbox">
+          <span>在这台设备的浏览器中记住令牌</span>
+        </label>
+        <div class="form-message" id="connectionMessage" role="status"></div>
+        <button class="admin-primary-button" id="connectButton" type="submit">
+          <span>连接并读取网页</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="editor-shell" id="editorShell" hidden>
+      <div class="editor-status-strip">
+        <div>
+          <span class="status-dot"></span>
+          <strong id="connectionStatus">已连接</strong>
+          <span id="lastSavedLabel">尚未修改</span>
+        </div>
+        <button class="text-button" id="refreshButton" type="button">重新读取</button>
+      </div>
+
+      <nav class="editor-tabs" aria-label="编辑栏目">
+        <button class="editor-tab is-active" type="button" data-tab="basic">基本信息</button>
+        <button class="editor-tab" type="button" data-tab="gallery">照片墙</button>
+        <button class="editor-tab" type="button" data-tab="contact">联系方式</button>
+        <button class="editor-tab" type="button" data-tab="settings">设置与备份</button>
+      </nav>
+
+      <form id="editorForm" novalidate>
+        <section class="editor-panel is-active" data-panel="basic">
+          <div class="panel-heading">
+            <div><span class="step-badge">文字与头像</span><h2>基本信息</h2></div>
+            <p>这些内容会出现在主页开头的欢迎区域。</p>
+          </div>
+
+          <div class="form-grid">
+            <label class="field">
+              <span>姓名</span>
+              <input id="nameInput" autocomplete="name" maxlength="30" required>
+            </label>
+            <label class="field">
+              <span>所在地</span>
+              <input id="locationInput" maxlength="40" placeholder="例如 中国 · 上海">
+            </label>
+            <label class="field field-full">
+              <span>欢迎语 / 身份</span>
+              <input id="roleInput" maxlength="60" placeholder="例如 欢迎来到我的个人空间">
+            </label>
+            <label class="field field-full">
+              <span>一句话介绍</span>
+              <textarea id="taglineInput" rows="3" maxlength="180" placeholder="用一句话介绍自己"></textarea>
+            </label>
+            <label class="field field-full">
+              <span>关于标题</span>
+              <input id="aboutTitleInput" maxlength="30">
+            </label>
+            <label class="field field-full">
+              <span>关于我</span>
+              <textarea id="bioInput" rows="7" maxlength="1200" placeholder="写下你的经历、兴趣或近况"></textarea>
+            </label>
+            <label class="field">
+              <span>照片栏标题</span>
+              <input id="galleryTitleInput" maxlength="30">
+            </label>
+            <label class="field">
+              <span>主题颜色</span>
+              <span class="color-field"><input id="accentInput" type="color" value="#ad563b"><output id="accentOutput">#AD563B</output></span>
+            </label>
+            <label class="field field-full">
+              <span>照片栏说明</span>
+              <textarea id="galleryIntroInput" rows="3" maxlength="220"></textarea>
+            </label>
+          </div>
+
+          <div class="avatar-editor">
+            <div class="avatar-preview" id="avatarPreview">
+              <img id="avatarPreviewImage" alt="头像预览" hidden>
+              <span id="avatarPreviewFallback">余</span>
+            </div>
+            <div class="avatar-actions">
+              <h3>主页头像 / 个人照片</h3>
+              <p>建议使用正面照片。上传时会自动压缩，减少手机流量和网页加载时间。</p>
+              <div class="button-row">
+                <label class="admin-secondary-button file-button">
+                  选择照片
+                  <input id="avatarFileInput" type="file" accept="image/jpeg,image/png,image/webp">
+                </label>
+                <button class="admin-text-button danger-text" id="removeAvatarButton" type="button">移除头像</button>
+              </div>
+              <div class="upload-progress" id="avatarUploadProgress" hidden><span></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="editor-panel" data-panel="gallery">
+          <div class="panel-heading gallery-heading-action">
+            <div><span class="step-badge">照片与说明</span><h2>照片墙</h2></div>
+            <label class="admin-primary-button file-button">
+              添加照片
+              <input id="galleryFileInput" type="file" accept="image/jpeg,image/png,image/webp" multiple>
+            </label>
+          </div>
+          <p class="panel-note">上传后可以修改标题、说明和照片比例。手机相册中的大图会自动压缩。</p>
+          <div class="gallery-admin-list" id="galleryAdminList"></div>
+          <div class="gallery-admin-empty" id="galleryAdminEmpty">
+            <strong>还没有照片</strong>
+            <span>点击右上角“添加照片”，从手机相册选择图片。</span>
+          </div>
+        </section>
+
+        <section class="editor-panel" data-panel="contact">
+          <div class="panel-heading">
+            <div><span class="step-badge">让别人找到你</span><h2>联系方式</h2></div>
+            <p>留空的内容不会显示在公开主页上。</p>
+          </div>
+
+          <div class="form-grid">
+            <label class="field">
+              <span>栏目标题</span>
+              <input id="contactTitleInput" maxlength="30">
+            </label>
+            <label class="field">
+              <span>电子邮箱</span>
+              <input id="emailInput" type="email" autocomplete="email" placeholder="name@example.com">
+            </label>
+            <label class="field">
+              <span>电话</span>
+              <input id="phoneInput" type="tel" autocomplete="tel" placeholder="可选">
+            </label>
+            <label class="field">
+              <span>微信</span>
+              <input id="wechatInput" autocomplete="off" placeholder="点击后会复制微信号">
+            </label>
+            <label class="field">
+              <span>其他链接名称</span>
+              <input id="socialLabelInput" maxlength="30" placeholder="例如 小红书 / 微博 / 作品集">
+            </label>
+            <label class="field">
+              <span>其他链接网址</span>
+              <input id="socialUrlInput" type="url" inputmode="url" placeholder="https://...">
+            </label>
+          </div>
+        </section>
+
+        <section class="editor-panel" data-panel="settings">
+          <div class="panel-heading">
+            <div><span class="step-badge">数据安全</span><h2>设置与备份</h2></div>
+            <p>建议在修改较多内容前导出一份备份。</p>
+          </div>
+
+          <div class="settings-list">
+            <article class="setting-item">
+              <div><h3>网站仓库</h3><p id="settingsRepoText">尚未连接</p></div>
+              <button class="admin-secondary-button" id="changeRepoButton" type="button">更换</button>
+            </article>
+            <article class="setting-item">
+              <div><h3>导出内容备份</h3><p>将文字和照片信息保存为 JSON 文件。</p></div>
+              <button class="admin-secondary-button" id="exportButton" type="button">导出</button>
+            </article>
+            <article class="setting-item">
+              <div><h3>导入内容备份</h3><p>从之前导出的 JSON 文件恢复信息。</p></div>
+              <label class="admin-secondary-button file-button">
+                选择文件
+                <input id="importFileInput" type="file" accept="application/json,.json">
+              </label>
+            </article>
+            <article class="setting-item">
+              <div><h3>断开这台设备</h3><p>清除浏览器中保存的令牌和仓库信息。</p></div>
+              <button class="admin-secondary-button danger-button" id="disconnectButton" type="button">断开</button>
+            </article>
+          </div>
+
+          <div class="deploy-help">
+            <h3>发布说明</h3>
+            <p>保存后会提交到 GitHub。开启 GitHub Pages 后，通常 1–3 分钟即可在公开链接看到新内容。</p>
+            <a href="https://docs.github.com/pages" target="_blank" rel="noopener">查看 GitHub Pages 帮助</a>
+          </div>
+        </section>
+      </form>
+
+      <div class="save-bar" id="saveBar">
+        <div class="save-state">
+          <span id="saveStateText">没有未保存的修改</span>
+          <small id="saveStateDetail">图片上传后也会立即保存</small>
+        </div>
+        <button class="admin-primary-button save-button" id="saveButton" type="button" disabled>保存到网站</button>
+      </div>
+    </section>
+  </main>
+
+  <div class="admin-toast" id="adminToast" role="status" aria-live="polite" hidden></div>
+
+  <template id="galleryItemTemplate">
+    <article class="gallery-admin-item">
+      <div class="gallery-admin-image">
+        <img alt="">
+        <span class="gallery-index"></span>
+      </div>
+      <div class="gallery-admin-fields">
+        <label class="field">
+          <span>照片标题</span>
+          <input data-field="title" maxlength="60" placeholder="例如：夏天的海边">
+        </label>
+        <label class="field">
+          <span>照片说明</span>
+          <textarea data-field="caption" rows="2" maxlength="180" placeholder="可选"></textarea>
+        </label>
+        <label class="field">
+          <span>照片比例</span>
+          <select data-field="shape">
+            <option value="auto">自动</option>
+            <option value="landscape">横向</option>
+            <option value="portrait">竖向</option>
+            <option value="square">方形</option>
+            <option value="wide">宽幅</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>无障碍描述</span>
+          <input data-field="alt" maxlength="100" placeholder="简短描述照片内容">
+        </label>
+        <div class="gallery-item-actions">
+          <button type="button" data-action="up" aria-label="向上移动">↑ 上移</button>
+          <button type="button" data-action="down" aria-label="向下移动">↓ 下移</button>
+          <label class="replace-label">替换照片<input type="file" data-action="replace" accept="image/jpeg,image/png,image/webp"></label>
+          <button type="button" data-action="delete" class="danger-text">删除</button>
+        </div>
+        <div class="item-upload-progress" hidden><span></span></div>
+      </div>
+    </article>
+  </template>
+</body>
+</html>
