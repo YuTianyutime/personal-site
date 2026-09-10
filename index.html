@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171a1e">
+  <meta name="description" id="metaDescription" content="余天宇的个人主页，记录生活、兴趣与重要时刻。">
+  <meta property="og:title" content="余天宇的个人主页">
+  <meta property="og:description" content="记录生活里值得记住的瞬间。">
+  <meta property="og:type" content="website">
+  <title>余天宇｜个人主页</title>
+  <link rel="canonical" href="./">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="./js/site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="topbar" id="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="返回首页">
+        <span class="brand-mark" id="brandMark">余</span>
+        <span class="brand-name" id="brandName">余天宇</span>
+      </a>
+      <nav class="main-nav" aria-label="主导航">
+        <a href="#about">关于</a>
+        <a href="#gallery">影像</a>
+        <a href="#contact">联系</a>
+      </nav>
+      <button class="share-button" id="shareButton" type="button" aria-label="分享个人主页">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a3 3 0 1 0-2.83-4H15a3 3 0 0 0 .24 1.17L8.91 8.65a3 3 0 1 0 0 6.7l6.33 3.48A3 3 0 1 0 18 16a3 3 0 0 0-2.12.88l-5.74-3.16a3.04 3.04 0 0 0 0-3.44l5.74-3.16A3 3 0 0 0 18 8Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow" id="heroRole">欢迎来到我的个人空间</p>
+          <h1>
+            <span id="heroName">余天宇</span><span class="title-dot" aria-hidden="true">.</span>
+          </h1>
+          <p class="hero-tagline" id="heroTagline">把生活里值得记住的瞬间，好好放在这里。</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#gallery">看看我的照片</a>
+            <a class="button button-ghost" id="heroContact" href="#contact">与我联系</a>
+          </div>
+          <p class="hero-location" id="heroLocation"><span aria-hidden="true">⌖</span> 中国</p>
+        </div>
+
+        <div class="portrait-stage" aria-hidden="true">
+          <div class="portrait-ring"></div>
+          <div class="portrait" id="portrait">
+            <img id="avatarImage" alt="" hidden>
+            <span class="avatar-fallback" id="avatarFallback">余</span>
+          </div>
+          <span class="stage-note">PERSONAL SPACE</span>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#about" aria-label="向下浏览"><span></span></a>
+    </section>
+
+    <section class="section about-section reveal" id="about">
+      <div class="section-inner">
+        <div class="section-kicker"><span>01</span> ABOUT</div>
+        <div class="about-grid">
+          <div>
+            <h2 id="aboutTitle">关于我</h2>
+            <p class="section-lead" id="aboutLead">你好，我是余天宇。</p>
+          </div>
+          <div class="about-copy">
+            <p id="bioText">这里记录我的生活、兴趣与重要时刻。</p>
+            <div class="about-meta">
+              <div><span>所在地</span><strong id="aboutLocation">中国</strong></div>
+              <div><span>主页状态</span><strong>持续更新中</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section gallery-section reveal" id="gallery">
+      <div class="section-inner">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker"><span>02</span> GALLERY</div>
+            <h2 id="galleryTitle">我的影像</h2>
+          </div>
+          <p id="galleryIntro">照片会陆续更新，记录那些值得留住的画面。</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+        <div class="gallery-empty" id="galleryEmpty" hidden>
+          <div class="empty-art" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+          <h3>照片正在整理中</h3>
+          <p>这里以后会放上生活、旅行和重要时刻的照片。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section reveal" id="contact">
+      <div class="section-inner">
+        <div class="contact-shell">
+          <div class="contact-heading">
+            <div class="section-kicker section-kicker-light"><span>03</span> CONTACT</div>
+            <h2 id="contactTitle">联系我</h2>
+            <p>如果你想和我聊聊，可以从下面选择一种方式。</p>
+          </div>
+          <div class="contact-list" id="contactList"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>© <span id="currentYear">2026</span> <span id="footerName">余天宇</span></p>
+      <div class="footer-actions">
+        <a href="./admin.html">管理网页</a>
+        <span aria-hidden="true">·</span>
+        <span>为手机浏览优化</span>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" type="button" aria-label="关闭大图">×</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" type="button" aria-label="上一张">‹</button>
+    <figure>
+      <img id="lightboxImage" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" type="button" aria-label="下一张">›</button>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>
