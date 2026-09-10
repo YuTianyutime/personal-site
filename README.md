@@ -1,6 +1,6 @@
 # 余天宇个人主页
 
-公开主页：https://yutianyutime.github.io/personal-site/
+公开主页：https://yutianyutime.github.io/
 
 手机管理页：https://yutianyutime.github.io/personal-site/admin.html
 
