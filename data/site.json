@@ -1,20 +1,69 @@
 {
   "name": "余天宇",
-  "role": "欢迎来到我的个人空间",
-  "tagline": "把生活里值得记住的瞬间，好好放在这里。",
+  "role": "欢迎来到余天宇的房子",
+  "tagline": "忏悔!感恩!相信!",
   "location": "地球",
-  "bio": "你好，我是余天宇。这里记录我的生活、兴趣与重要时刻。你可以通过照片墙认识我，也可以通过页面底部的联系方式与我交流。",
-  "avatar": "",
-  "email": "",
-  "phone": "",
-  "wechat": "",
+  "bio": "大家好",
+  "avatar": "assets/uploads/photo-20260910172714-56wnx.jpg",
+  "email": "337893128@qq.com",
+  "phone": "17267503318",
+  "wechat": "YTY337893128",
   "socialLabel": "",
   "socialUrl": "",
-  "galleryTitle": "我的影像",
-  "galleryIntro": "照片会陆续更新，记录那些值得留住的画面。",
+  "galleryTitle": "我的画廊",
+  "galleryIntro": "艺术将持续产生",
   "aboutTitle": "关于我",
   "contactTitle": "联系我",
-  "accent": "#ad563b",
-  "gallery": [],
-  "updatedAt": "2026-09-10T17:22:32.392Z"
+  "accent": "#cbf0ff",
+  "gallery": [
+    {
+      "id": "14ec3875-ba87-4293-a7cc-dad41314621f",
+      "src": "assets/uploads/photo-20260910172835-ahgys.jpg",
+      "title": "",
+      "caption": "第一次使用3块钱史上最便宜油画棒",
+      "alt": "",
+      "shape": "auto"
+    },
+    {
+      "id": "23ae2673-5ad3-4f2b-b5a2-8337ab21e029",
+      "src": "assets/uploads/photo-20260910172840-c10hp.jpg",
+      "title": "想象中夜晚的意大利",
+      "caption": "",
+      "alt": "",
+      "shape": "auto"
+    },
+    {
+      "id": "77588317-5a37-42ee-b91b-53fd34a81c45",
+      "src": "assets/uploads/photo-20260910172843-p51my.jpg",
+      "title": "",
+      "caption": "过了好久重新拿起笔画的第三张",
+      "alt": "",
+      "shape": "auto"
+    },
+    {
+      "id": "16dacceb-5c59-4b39-886f-7ea702b25e8f",
+      "src": "assets/uploads/photo-20260910172846-wtn0d.jpg",
+      "title": "死去的裤子",
+      "caption": "裤子死了",
+      "alt": "",
+      "shape": "auto"
+    },
+    {
+      "id": "4232bcf5-c6ce-4652-9618-45a47c902981",
+      "src": "assets/uploads/photo-20260910172852-2eynz.jpg",
+      "title": "星际牛仔",
+      "caption": "烟是星河",
+      "alt": "",
+      "shape": "auto"
+    },
+    {
+      "id": "7adeb2d5-f27d-477b-836b-0aea499a95d8",
+      "src": "assets/uploads/photo-20260910172855-v9z13.jpg",
+      "title": "红色剩太多",
+      "caption": "",
+      "alt": "",
+      "shape": "auto"
+    }
+  ],
+  "updatedAt": "2026-09-10T17:33:22.728Z"
 }
