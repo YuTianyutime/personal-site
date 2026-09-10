@@ -1,13 +1,13 @@
-const CACHE_NAME = "yutianyu-site-v2";
+const CACHE_NAME = "yutianyu-site-v3";
 const APP_SHELL = [
   "./",
   "./index.html",
-  "./admin.html",
-  "./css/styles.css",
-  "./css/admin.css",
+  "./admin.html?v=3",
+  "./css/styles.css?v=3",
+  "./css/admin.css?v=3",
   "./js/site.js",
-  "./js/github-store.js",
-  "./js/admin.js",
+  "./js/github-store.js?v=3",
+  "./js/admin.js?v=3",
   "./data/site.json",
   "./assets/icons/icon.svg",
   "./assets/placeholders/image.svg"
