@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="照片暂时无法显示">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ece3d6"/>
+      <stop offset="1" stop-color="#d8cbbb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <circle cx="390" cy="340" r="90" fill="#b98b77" opacity=".55"/>
+  <path d="M0 760 340 470l230 205 180-160 450 385H0Z" fill="#9c7d69" opacity=".34"/>
+  <text x="600" y="805" fill="#6c6259" font-family="sans-serif" font-size="34" text-anchor="middle">照片暂时无法显示</text>
+</svg>
