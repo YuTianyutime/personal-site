@@ -1,0 +1,19 @@
+{
+  "name": "余天宇的个人主页",
+  "short_name": "余天宇",
+  "description": "记录生活、兴趣与重要时刻的个人主页。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3eee5",
+  "theme_color": "#171a1e",
+  "icons": [
+    {
+      "src": "./assets/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
